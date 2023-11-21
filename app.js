@@ -1,26 +1,12 @@
 "use strict";
 
-function convert(sum, initialCurrency, convertCurrency) {
-  const allCurrencies = [
-    { name: "USD", mult: 1 },
-    { name: "KZT", mult: 1 / 480 },
-    { name: "EUR", mult: 1.1 },
-  ];
-  const initial = allCurrencies.find((c) => c.name === initialCurrency);
-  if (!initial) {
-    return null;
-  }
-  const convert = allCurrencies.find((c) => c.name === convertCurrency);
-  if (!convert) {
-    return null;
-  }
-  return new Intl.NumberFormat("kz-KZ", {
-    style: "currency",
-    currency: convert.name,
-  }).format((sum * initial.mult) / convert.mult);
+const date = new Date(2024, 10, 15);
+const date2 = new Date(2024, 11, 15);
+console.log(Number(date));
+console.log(date2 - date);
+
+function getDaysBtDays(dateFirst, dateSecond) {
+  return (date2 - date) / (1000 * 60 * 60 * 24);
 }
 
-console.log(convert(10000, "KZT", "USD"));
-console.log(convert(10000, "KZT", "EUR"));
-console.log(convert(100, "USD", "KZT"));
-console.log(convert(100, "KZT", "EUR"));
+console.log(getDaysBtDays(date, date2));
