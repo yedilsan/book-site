@@ -1,21 +1,24 @@
 "use strict";
 
-const user1 = {
-  name: "Yedil",
-  birthday: "12/23/2022",
+const date = new Date();
+
+console.log(date);
+console.log(new Intl.DateTimeFormat("kz-KZ").format(date));
+const options1 = {
+  hour: "numeric",
+  minute: "numeric",
 };
+console.log(new Intl.DateTimeFormat("kz-KZ", options1).format(date));
 
-function isBirthday(user1) {
-  const birthdayDate = new Date(user1.birthday);
-  const now = new Date();
+const options2 = {
+  hour: "numeric",
+  minute: "numeric",
+  month: "long",
+  weekday: "short",
+  year: "2-digit",
+};
+console.log(new Intl.DateTimeFormat("en-US", options2).format(date));
+console.log(new Intl.DateTimeFormat("kz-KZ", options2).format(date));
 
-  if (birthdayDate.getMonth() !== now.getMonth()) {
-    return false;
-  }
-  if (birthdayDate.getDate() !== now.getDate()) {
-    return false;
-  }
-  return true;
-}
-
-console.log(isBirthday(user1));
+console.log(navigator.language);
+console.log(new Intl.DateTimeFormat(navigator.language, options2).format(date));
