@@ -1,12 +1,21 @@
 "use strict";
 
-const date = new Date(2024, 10, 15);
-const date2 = new Date(2024, 11, 15);
-console.log(Number(date));
-console.log(date2 - date);
+const user1 = {
+  name: "Yedil",
+  birthday: "12/23/2022",
+};
 
-function getDaysBtDays(dateFirst, dateSecond) {
-  return (date2 - date) / (1000 * 60 * 60 * 24);
+function isBirthday(user1) {
+  const birthdayDate = new Date(user1.birthday);
+  const now = new Date();
+
+  if (birthdayDate.getMonth() !== now.getMonth()) {
+    return false;
+  }
+  if (birthdayDate.getDate() !== now.getDate()) {
+    return false;
+  }
+  return true;
 }
 
-console.log(getDaysBtDays(date, date2));
+console.log(isBirthday(user1));
