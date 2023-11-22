@@ -1,24 +1,21 @@
 "use strict";
 
-const date = new Date();
+function pizzaTimer(ms) {
+  const end = new Date().getTime() + ms;
 
-console.log(date);
-console.log(new Intl.DateTimeFormat("kz-KZ").format(date));
-const options1 = {
-  hour: "numeric",
-  minute: "numeric",
-};
-console.log(new Intl.DateTimeFormat("kz-KZ", options1).format(date));
+  const interval = setInterval(() => {
+    console.log(
+      new Intl.DateTimeFormat("kz-KZ", {
+        minute: "numeric",
+        second: "numeric",
+      }).format(end + 100 - new Date()) //add additionally several ms bc event loop
+    );
+  }, 1000);
 
-const options2 = {
-  hour: "numeric",
-  minute: "numeric",
-  month: "long",
-  weekday: "short",
-  year: "2-digit",
-};
-console.log(new Intl.DateTimeFormat("en-US", options2).format(date));
-console.log(new Intl.DateTimeFormat("kz-KZ", options2).format(date));
+  setTimeout(() => {
+    clearInterval(interval);
+    console.log("Pizza is ready!");
+  }, ms);
+}
 
-console.log(navigator.language);
-console.log(new Intl.DateTimeFormat(navigator.language, options2).format(date));
+pizzaTimer(5000);
