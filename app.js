@@ -1,21 +1,42 @@
 "use strict";
 
-function pizzaTimer(ms) {
-  const end = new Date().getTime() + ms;
+const product = { id: 1, name: "Bread", count: 1 };
 
-  const interval = setInterval(() => {
-    console.log(
-      new Intl.DateTimeFormat("kz-KZ", {
-        minute: "numeric",
-        second: "numeric",
-      }).format(end + 100 - new Date()) //add additionally several ms bc event loop
-    );
-  }, 1000);
+const Cart = function () {
+  this.products = [];
+};
 
-  setTimeout(() => {
-    clearInterval(interval);
-    console.log("Pizza is ready!");
-  }, ms);
-}
+Cart.prototype.addProduct = function (product) {
+  if (this.products.find((p) => p.id === product.id)) {
+    return;
+  }
+  this.products.push(product);
+};
 
-pizzaTimer(5000);
+Cart.prototype.increaseAmount = function (id) {
+  this.products = this.products.map((p) => {
+    if (p.id == id) {
+      p.count++;
+      return p;
+    }
+    return product;
+  });
+};
+
+Cart.prototype.decreaseAmount = function (id) {
+  this.products = this.products
+    .map((p) => {
+      if (p.id == id) {
+        p.count--;
+        return p;
+      }
+      return product;
+    })
+    .filter((p) => p.count > 0);
+};
+
+const cart = new Cart();
+cart.addProduct(product);
+cart.increaseAmount(1);
+cart.decreaseAmount(1);
+console.log(cart);
