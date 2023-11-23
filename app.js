@@ -1,42 +1,42 @@
 "use strict";
 
-const product = { id: 1, name: "Bread", count: 1 };
-
-const Cart = function () {
-  this.products = [];
-};
-
-Cart.prototype.addProduct = function (product) {
-  if (this.products.find((p) => p.id === product.id)) {
-    return;
+class User {
+  #login;
+  #_password;
+  constructor(login, password) {
+    this.#login = login;
+    this.#password = password;
   }
-  this.products.push(product);
-};
 
-Cart.prototype.increaseAmount = function (id) {
-  this.products = this.products.map((p) => {
-    if (p.id == id) {
-      p.count++;
-      return p;
+  set #password(pass) {
+    this.#_password = pass.split("").reverse().join("");
+  }
+  get #password() {
+    return this.#_password.split("").reverse().join("");
+  }
+  get login() {
+    return this.#login;
+  }
+
+  checkPass(pass) {
+    return this.#password === pass;
+  }
+
+  changePass(oldPass, newPass) {
+    if (!this.checkPass(oldPass)) {
+      return false;
     }
-    return product;
-  });
-};
+    this.#password = newPass;
+    return true;
+  }
+}
 
-Cart.prototype.decreaseAmount = function (id) {
-  this.products = this.products
-    .map((p) => {
-      if (p.id == id) {
-        p.count--;
-        return p;
-      }
-      return product;
-    })
-    .filter((p) => p.count > 0);
-};
+const user = new User("user@user.use", "123");
+console.log(user);
+console.log(user.login);
 
-const cart = new Cart();
-cart.addProduct(product);
-cart.increaseAmount(1);
-cart.decreaseAmount(1);
-console.log(cart);
+console.log(user.checkPass("321"));
+console.log(user.checkPass("123"));
+
+console.log(user.changePass("123", "321"));
+console.log(user);
