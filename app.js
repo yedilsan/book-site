@@ -1,22 +1,19 @@
 "use strict";
 
-/*
-	Сделать запрос на https://dummyjson.com/products/categories,
-	получить список категорий и отобразить <select> выбора категорий.
-*/
+async function getProducts() {
+  // fetch("https://dummyjson.com/products")
+  //   .then((response) => response.json())
+  //   .then((data) => console.log(data));
+  const productsResponse = await fetch("https://dummyjson.com/products");
+  const { products } = await productsResponse.json();
+  console.log(products);
 
-function createSelect(array) {
-  const el = document.querySelector(".filter");
-  el.innerHTML = `<select>
-		${array.map((arrEl) => `<option value=${arrEl}>${arrEl}</option>`)}
-	</select>`;
+  const productResponse = await fetch(
+    `https://dummyjson.com/products/` + products[0].id
+  );
+  const product = await productResponse.json();
+  console.log(product);
 }
 
-function getCategories() {
-  fetch("https://dummyjson.com/products/categories")
-    .then((response) => response.json())
-    .then((data) => createSelect(data))
-    .catch((error) => console.error(`Ошибка: ${error}`));
-}
-
-getCategories();
+getProducts();
+console.log("END");
