@@ -1,0 +1,31 @@
+{
+  "name": "book-site",
+  "version": "1.0.0",
+  "description": "Book app",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "start": "live-server",
+    "build": "rollup -c --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlariCode/8-javascript-advanced-1.git"
+  },
+  "keywords": [
+    "books"
+  ],
+  "author": "Yedil Sanatov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yedilsan/book-site/issues"
+  },
+  "homepage": "https://github.com/yedilsan",
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "eslint": "^8.33.0",
+    "on-change": "^4.0.2",
+    "rollup": "^3.14.0",
+    "rollup-plugin-import-css": "^3.1.0"
+  }
+}
