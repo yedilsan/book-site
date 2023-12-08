@@ -1,4 +1,4 @@
-![1](https://github.com/yedilsan/book-site/assets/80204971/2c312fdb-e993-4db7-bc66-e0f5495ba73e)# Book-site
+# Book-site
 
 A simple interesting application with books, created using JavaScript (and with own mini framework). This application allows users to search books from the **Open Library** database and add them to favorites
 
